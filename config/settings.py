@@ -15,6 +15,8 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = env.bool('DEBUG', default=False)
 ALLOWED_HOSTS = env.str('ALLOWED_HOSTS', default='').split(' ')
 
+
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -33,6 +35,7 @@ INSTALLED_APPS += [
     'corsheaders',
     'drf_spectacular',
     'djoser',
+    'phonenumber_field',
 ]
 
 ################
@@ -41,6 +44,7 @@ INSTALLED_APPS += [
 INSTALLED_APPS += [
     'api',
     'common',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -80,6 +84,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+AUTH_USER_MODEL = 'users.User'
 
 
 ###########################
