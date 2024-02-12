@@ -20,7 +20,7 @@ User = get_user_model()
 
 
 @extend_schema_view(
-    post=extend_schema(summary='Регистрация пользователя', tags=['Аутентификация & Авторизация']),
+    post=extend_schema(summary='User registration', tags=['Authentication & Authorisation']),
 )
 class RegistrationView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -31,7 +31,7 @@ class RegistrationView(generics.CreateAPIView):
 @extend_schema_view(
     post=extend_schema(
         request=user_s.ChangePasswordSerializer,
-        summary='Смена пароля', tags=['Аутентификация & Авторизация']),
+        summary='Password change', tags=['Authentication & Authorisation']),
 )
 class ChangePasswordView(APIView):
 
@@ -46,9 +46,9 @@ class ChangePasswordView(APIView):
 
 
 @extend_schema_view(
-    get=extend_schema(summary='Профиль пользователя', tags=['Пользователи']),
-    put=extend_schema(summary='Изменить профиль пользователя', tags=['Пользователи']),
-    patch=extend_schema(summary='Изменить частично профиль пользователя', tags=['Пользователи']),
+    get=extend_schema(summary='User profile', tags=['Users']),
+    put=extend_schema(summary='Change user profile', tags=['Users']),
+    patch=extend_schema(summary='Change user profile partialy', tags=['Users']),
 )
 class MeView(RetrieveUpdateAPIView):
     queryset = User.objects.all()
@@ -65,7 +65,7 @@ class MeView(RetrieveUpdateAPIView):
 
 
 @extend_schema_view(
-    list=extend_schema(summary='Список пользователей Search', tags=['Словари']),
+    list=extend_schema(summary='Users list search', tags=['Dicts']),
 )
 class UserListSearchView(ListViewSet):
     queryset = User.objects.exclude(
