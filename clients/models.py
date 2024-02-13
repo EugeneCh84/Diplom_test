@@ -3,6 +3,7 @@ from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from common.models.mixins import InfoMixin
 
+
 class Client(InfoMixin):
     NEW = 'new'
     OLD = 'old'
@@ -21,11 +22,9 @@ class Client(InfoMixin):
     status = models.CharField(max_length=10, choices=CHOICES_STATUS, blank=False, null=False)
     discount = models.PositiveSmallIntegerField(default=0, validators=([MaxValueValidator(50)]),
                                                 blank=False, null=False)
-    #created_at = models.DateTimeField(auto_now_add=True)
-    #modified_at = models.DateTimeField(auto_now=True)
+
+    # created_at = models.DateTimeField(auto_now_add=True)
+    # modified_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f'{self.company_name}'
-
-
-

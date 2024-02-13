@@ -8,6 +8,14 @@ from users.serializers.nested.users import UserShortSerializer
 User = get_user_model()
 
 
+class ManagerSerializer(ExtendedModelSerializer):
+    user = UserShortSerializer()
+
+    class Meta:
+        model = Manager
+        fields = ('user', 'level', 'manage_role')
+
+
 class ManagerSearchSerializer(ExtendedModelSerializer):
     user = UserShortSerializer()
 
@@ -30,6 +38,8 @@ class ManagerCreateSerializer(ExtendedModelSerializer):
             'last_name',
             'email',
             'password',
+            'level',
+            'manage_role',
 
         )
 

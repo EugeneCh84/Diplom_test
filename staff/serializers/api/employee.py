@@ -8,6 +8,14 @@ from users.serializers.nested.users import UserShortSerializer
 User = get_user_model()
 
 
+class EmployeeSerializer(ExtendedModelSerializer):
+    user = UserShortSerializer()
+
+    class Meta:
+        model = Employee
+        fields = ('user', 'category', 'role')
+
+
 class EmployeeSearchSerializer(ExtendedModelSerializer):
     user = UserShortSerializer()
 
@@ -43,7 +51,7 @@ class EmployeeCreateSerializer(ExtendedModelSerializer):
             }
 
             with transaction.atomic():
-                user = User.objects.create_user(**user_data)
+                user = User.objects.create(**user_data)
                 validated_data['user'] = user
 
                 instance = super().create(validated_data)
